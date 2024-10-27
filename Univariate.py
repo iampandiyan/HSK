@@ -15,7 +15,7 @@ class Univariate():
     
     def createDescriptiveTable(self,dataset):
         quanColumns=self.quanQual(dataset)[0]
-        descriptive=pd.DataFrame(index=["Mean","Median","Mode","Q1:25%","Q2:50%","Q3:75%","99%","Q4:100%","IQR","1.5rule","Lesser","Greater","Min","Max","Kurtosis","Skew"],columns=quanColumns)        
+        descriptive=pd.DataFrame(index=["Mean","Median","Mode","Q1:25%","Q2:50%","Q3:75%","99%","Q4:100%","IQR","1.5rule","Lesser","Greater","Min","Max","Kurtosis","Skew","Var","Std"],columns=quanColumns)        
         for columnName in quanColumns:
             descriptive[columnName]["Mean"]=dataset[columnName].mean()
             descriptive[columnName]["Median"]=dataset[columnName].median()
@@ -33,6 +33,8 @@ class Univariate():
             descriptive[columnName]["Max"]=dataset[columnName].max()
             descriptive[columnName]["Kurtosis"]=dataset[columnName].kurtosis()
             descriptive[columnName]["Skew"]=dataset[columnName].skew()
+            descriptive[columnName]["Var"]=dataset[columnName].var()
+            descriptive[columnName]["Std"]=dataset[columnName].std()
         return descriptive
     
     def getOutliers(self,dataset):
